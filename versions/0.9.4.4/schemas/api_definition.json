@@ -1,0 +1,133 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "http://jsonschema.net",
+    "properties": {
+        "api_definition": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "id": "http://jsonschema.net/active"
+                },
+                "auth": {
+                    "type": "object",
+                    "id": "http://jsonschema.net/auth",
+                    "properties": {
+                        "auth_header_name": {
+                            "type": "string",
+                            "id": "http://jsonschema.net/auth/auth_header_name"
+                        }
+                    },
+                    "required": [
+                        "auth_header_name"
+                    ]
+                },
+                "definition": {
+                    "type": "object",
+                    "id": "http://jsonschema.net/definition",
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "id": "http://jsonschema.net/definition/key"
+                        },
+                        "location": {
+                            "type": "string",
+                            "id": "http://jsonschema.net/definition/location"
+                        }
+                    },
+                    "required": [
+                        "key",
+                        "location"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "id": "http://jsonschema.net/name"
+                },
+                "slug": {
+                    "type": "string",
+                    "id": "http://jsonschema.net/name"
+                },
+                "proxy": {
+                    "type": "object",
+                    "id": "http://jsonschema.net/proxy",
+                    "properties": {
+                        "target_url": {
+                            "type": "string",
+                            "id": "http://jsonschema.net/proxy/target_url"
+                        }
+                    },
+                    "required": [
+                        "target_url"
+                    ]
+                },
+                "hook_references": {
+                    "type": "object"
+                },
+                "version_data": {
+                    "type": "object",
+                    "id": "http://jsonschema.net/version_data",
+                    "properties": {
+                        "not_versioned": {
+                            "type": "boolean",
+                            "id": "http://jsonschema.net/version_data/not_versioned"
+                        },
+                        "versions": {
+                            "type": "object",
+                            "id": "http://jsonschema.net/version_data/versions",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+$": {
+                                    "title": "versionInfoProperty",
+                                    "type": "object",
+                                    "id": "http://jsonschema.net/access_rights/versionInfoProperty",
+                                    "properties": {
+                                        "expires": {
+                                            "type": "string",
+                                            "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/expires"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/name"
+                                        },
+                                        "paths": {
+                                            "type": "object",
+                                            "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/paths",
+                                            "properties": {
+                                                "black_list": {
+                                                    "type": "array",
+                                                    "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/paths/black_list"
+                                                },
+                                                "ignored": {
+                                                    "type": "array",
+                                                    "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/paths/ignored"
+                                                },
+                                                "white_list": {
+                                                    "type": "array",
+                                                    "id": "http://jsonschema.net/version_data/versions/versionInfoProperty/paths/white_list"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "required": [
+                        "not_versioned",
+                        "versions"
+                    ]
+                }
+            },
+            "required": [
+                    "auth",
+                    "name",
+                    "proxy",
+                    "version_data"
+                ]
+        }
+    }
+}

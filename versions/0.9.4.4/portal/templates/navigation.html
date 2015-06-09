@@ -1,0 +1,62 @@
+{{define "navigation"}}
+
+{{ $org_id := .OrgId}}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/portal/">{{ if .PageSettings.PortalName }} {{else}} Tyk Developer Portal {{end}}</a>
+        </div>
+        
+        <div id="navbar" class="navbar-collapse collapse">
+        	<ul class="nav navbar-nav">
+        	  {{ range $index, $menuItem := .Menus.Main}}
+        	  <li><a href="/portal/{{$menuItem.URL}}">{{$menuItem.Title}}</a></li>
+        	  {{ end }}
+        	  <li><a href="/portal/apis/">API Catalogue</a></li>
+        	  {{ if not .PortalConfig.DisableSignup }}
+        	  	{{ if not .UserData }}
+        	  	<li><a href="/portal/register/">Register</a></li>
+        	  	{{ end }}
+        	  {{ end }}
+        	  {{ if not .PortalConfig.DisableLogin }}
+        	  	{{ if not .UserData }}
+        	  	<li><a href="/portal/login/">Log in</a></li>
+        	  	{{ end }}
+        	  {{ end }}
+            </ul>
+        
+        {{ if .UserData }}
+        	<ul class="nav navbar-nav">
+        	  <li><a href="/portal/member/">Dashboard</a></li>
+        	  <li><a href="/portal/logout/">Log out</a></li>
+        	
+            </ul>
+        	
+        {{ else }}
+        
+        {{ if .PortalConfig.DisableLogin }}
+			<p><em>Login has been disabled</em></p>
+		{{ else }}
+          <form class="navbar-form navbar-right" action="/portal/login" method="POST">
+            <div class="form-group">
+              <input type="text" placeholder="Email" name="username" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" name="password" id="password" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-success" value="Sign in">
+          </form>
+        {{end}}
+          
+        {{ end }}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+{{ end }}

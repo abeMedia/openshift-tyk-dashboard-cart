@@ -1,0 +1,73 @@
+{{ define "requestKey" }}
+
+
+{{ template "header" .}}
+
+
+  <body>
+  
+  	{{ template "navigation" . }}
+
+    <div>
+    	
+    	<div class="container" style="margin-top: 80px;">
+    		<div class="row">
+    			<div class="col-md-10">
+    			<h1>Request a Key</h1>
+    			
+    			{{ if .Error  }}
+				<div class="panel panel-danger">
+					<div class="panel-body">
+						{{.Error}}
+					</div>
+				</div>
+				{{ end }}
+				
+				{{ if not .DenyRequest }}
+			
+				<form action="" method="POST">
+					<div class="form-group">
+						<label for="custom1">Custom request field 1</label>
+						<input type="text" class="form-control" id="custom1" name="custom1" placeholder="why do you want access">
+					</div>
+					
+					<div class="form-group">
+						<label for="custom2">Custom request field 2</label>
+						<input type="text" class="form-control" id="custom2" name="custom2" placeholder="What is the meaning of life, the universe and everything?" >
+					</div>
+					
+					<input type="submit" class="btn btn-default" value="Request Key"></button>
+				</form>
+				
+				{{ else }}
+					
+					<p>
+						It appears there is already an API key associated wit hthis account. To reset your key, or to change your
+						key details, please contact your site administrator.
+					</p>
+					
+				{{ end }}
+    			</div>
+    			
+				<div class="col-md-2">
+    				{{ template "portalMemberNavigation" . }}
+    			</div>
+    			
+    		</div>    		
+    		
+    	</div>
+    	
+    </div>
+
+	  {{ template "footer" .}}
+      
+    </div> <!-- /container -->
+
+
+    {{ template "scripts" .}}
+  </body>
+</html>
+
+
+
+{{ end }}

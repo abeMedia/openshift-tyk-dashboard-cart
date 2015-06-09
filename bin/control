@@ -1,0 +1,84 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+TYK_DASHBOARD_DASHBOARD_EXEC=$OPENSHIFT_TYK_DIR/versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/tyk-analytics
+TYK_DASHBOARD_CONFIG_FILE=$OPENSHIFT_REPO_DIR/tyk_dashboard.conf
+TYK_DASHBOARD_LOG_FILE=$OPENSHIFT_LOG_DIR/tyk_dashboard.log
+
+
+function start() {
+    echo "Starting Tyk Dashboard"
+
+    if [ -f "$TYK_DASHBOARD_EXEC" ]; then
+
+        if [ -f "$TYK_DASHBOARD_CONFIG_FILE.erb" ]; then
+            oo-erb $TYK_DASHBOARD_CONFIG_FILE.erb > $TYK_DASHBOARD_CONFIG_FILE
+        fi
+
+        nohup $TYK_DASHBOARD_EXEC --conf=$TYK_DASHBOARD_CONFIG_FILE >> $TYK_DASHBOARD_LOG_FILE 2>&1 &
+
+    else
+        echo "WARN: Could not find the compiled application versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/bin/tyk, will not start"
+    fi
+}
+
+
+function stop() {
+    echo "Stopping Tyk Dashboard"
+    
+    if [ -z "$(ps -ef | grep tyk_dashboard | grep -v grep)" ]
+    then
+        echo "Application is already stopped"
+    else
+        kill `ps -ef | grep tyk_dashboard | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+    fi
+}
+
+
+function restart() {
+    echo "Restarting Tyk Dashboard"
+    stop
+    start
+}
+
+
+function status() {
+    res=0
+    output=$(curl -s -m 30 http://$OPENSHIFT_TYK_DASHBOARD_IP:$OPENSHIFT_TYK_DASHBOARD_PORT/ &> /dev/null) || res=1
+
+    if [ $res -eq 0 ]
+    then
+        echo "Tyk Dashboard is running"
+        echo "$output"
+    else
+        echo "Tyk Dashboard is either stopped or inaccessible"
+    fi
+}
+
+
+function reload() {
+    echo 'bla'
+}
+
+
+function tidy() {
+    echo 'bla'
+}
+
+
+function update() {
+    echo 'bla'
+}
+
+
+case "$1" in
+  start)     start ;;
+  stop)      stop ;;
+  restart)   restart ;;
+  status)    status ;;
+  reload)    reload ;;
+  tidy)      tidy ;;
+  update)    update ;;
+  *)         exit 0
+esac

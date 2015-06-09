@@ -1,0 +1,52 @@
+Name: tyk-dashboard
+Cartridge-Short-Name: TYK_DASHBOARD
+Cartridge-Version: 0.0.1
+Cartridge-Vendor: abemedia
+Website: http://tyk.io
+Display-Name: tyk Dashboard 0.9.4.4
+Description: An open source, fast and scalable API management platform.
+Version: '0.9.4.4'
+Versions:
+- '0.9.4.4'
+Website: https://github.com/abemedia/openshift-tyk-dashboard-cart
+License: Mozilla Public License Version 2.0
+License-Url: https://github.com/lonelycode/tyk/blob/master/LICENSE.md
+Vendor: Jively Ltd.
+Categories:
+- service
+- web_proxy
+- embedded
+Help-Topics:
+  Developer Center: https://www.openshift.com/developers
+Provides:
+- tyk-dashboard-0.9
+- tyk-dashboard
+Scaling:
+  Min: 1
+  Max: -1
+Publishes:
+  publish-gear-endpoint:
+    Type: "NET_TCP:gear-endpoint-info"
+Subscribes:
+  set-env:
+    Type: "ENV:*"
+    Required: false
+  set-db-connection-info:
+    Type: ENV:NET_TCP:db:connection-info
+    Required: false
+  set-redis-connection-info:
+    Type: ENV:NET_TCP:db:redis:connection-info-v1
+    Required: true
+  set-nosql-db-connection-info:
+    Type: ENV:NET_TCP:nosqldb:connection-info
+    Required: true
+Endpoints:
+- Private-IP-Name: IP
+  Private-Port-Name: PORT
+  Private-Port: 19091
+  Public-Port-Name: PROXY_PORT
+  Mappings:
+  - Frontend: 'analytics'
+    Backend: ''
+    Options:
+      websocket: true

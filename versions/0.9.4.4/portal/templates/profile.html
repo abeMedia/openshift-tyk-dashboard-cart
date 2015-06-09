@@ -1,0 +1,91 @@
+{{ define "profilePage" }}
+
+
+{{ template "header" .}}
+
+
+  <body>
+  
+  	{{ template "navigation" . }}
+
+    <div>
+    	
+    	<div class="container" style="margin-top: 80px;">
+    		<div class="row">
+    			<div class="col-md-10">
+    			<h1>Manage your profile</h1>
+    			
+    			{{ if .Error  }}
+    				
+					<div class="panel panel-danger">
+						<div class="panel-body">
+							{{.Error}}
+						</div>
+					</div>
+				
+				{{ end }}
+				
+				{{ if .Updated }}
+				
+				<div class="panel panel-success">
+					<div class="panel-body">
+						<p>
+						Profile updated sucessfully!
+						</p>
+					</div>
+				</div>
+				
+				{{ end }}
+				
+				
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Profile</h3>
+			  </div>
+			  <div class="panel-body">
+				<form action="" method="POST">
+					<div class="form-group">
+						<label for="username">Email address</label>
+						<input type="email" class="form-control" id="username" name="username" placeholder="Enter email" value="{{.Developer.Email}}">
+					</div>
+					
+					<p> It is possible to use custom fields as part of the signup for use elsewhere </p>
+					
+					<div class="form-group">
+						<label for="custom1">Custom field 1</label>
+						<input type="text" class="form-control" id="custom1" name="custom1" placeholder="Custom field" value="{{.Developer.Fields.custom1}}">
+					</div>
+					
+					<div class="form-group">
+						<label for="custom2">Custom field 2</label>
+						<input type="text" class="form-control" id="custom2" name="custom2" placeholder="Custom field" value="{{.Developer.Fields.custom2}}">
+					</div>
+					
+					<input type="submit" class="btn btn-success" value="Update"></button>
+				</form>
+			  </div>
+			</div>
+		</div>
+    			
+				<div class="col-md-2">
+    				{{ template "portalMemberNavigation" . }}
+    			</div>
+    			
+    		</div>    		
+    		
+    	</div>
+    	
+    </div>
+
+	  {{ template "footer" .}}
+      
+    </div> <!-- /container -->
+
+
+    {{ template "scripts" .}}
+  </body>
+</html>
+
+
+
+{{ end }}

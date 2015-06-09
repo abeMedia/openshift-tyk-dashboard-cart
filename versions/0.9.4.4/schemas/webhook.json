@@ -1,0 +1,25 @@
+{
+    "title": "Webhook detail schema",
+    "type": "object",
+    "properties": {
+        "id": {
+             "type": "string"
+        },
+        "org_id": {
+             "type": "string"
+        },
+        "method": {
+             "type": "string"
+        },
+        "target_path": {
+             "type": "string"
+        },
+        "header_map": {
+            "type": "object"
+        }
+    },
+    "required": [
+        "method",
+        "target_path"
+    ]
+}

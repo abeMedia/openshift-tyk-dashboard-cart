@@ -1,0 +1,12 @@
+{
+    "title": "OAuth Client Schema",
+    "type": "object",
+    "properties": {
+        "redirect_uri": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "redirect_uri"
+    ]
+}

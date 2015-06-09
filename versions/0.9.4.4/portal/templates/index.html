@@ -1,0 +1,85 @@
+{{ define "indexPage" }}
+
+
+{{ template "header" .}}
+
+
+  <body>
+  
+  	{{ template "navigation" . }}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    
+	<div>
+	
+		<div class="jumbotron" id="home-jumbotron">
+			<div class="container">
+				<h1 id="jumbo-title">Welcome to your portal</h1>
+				<p id="jumbo-subheader">
+					If you can see this, then your Tyk developer portal is active, congratulations!
+
+				</p>
+					<p id="jumbo-cta">
+					<a class="btn btn-primary btn-lg" 
+					href="https://tyk.io" 
+					role="button">Go to the Tyk website &raquo;</a>
+					</p>
+			</div>
+		</div>
+		
+		<div class="container" id="welcome-panels-container">
+			<div class="row">
+				<div class="col-md-4" id="welcome-panel-1">
+					<h2>Flexible templates</h2>
+					<p>
+						The HTML templates that are shipped with Tyk are very flexible. You can easily 
+						generate any kind of page, with an unlimited number	of fields 
+						that can be edited in the dashboard, they even support markdown.
+					</p>
+		
+					<p><a class="btn btn-default" href="https://tyk.io" role="button">Find out more &raquo;</a>
+					</p>
+				</div>
+				<div class="col-md-4" id="welcome-panel-2">
+					<h2>Simple on-boarding</h2>
+					<p>	
+						Tyk lets you make it easy on developers, simply enable site 
+						logins and populate your API Catalogue. Developers
+						will be able to auto-enroll for access based on policies you set up.
+					</p>
+					
+					<p><a class="btn btn-default" href="https://tyk.io" role="button">Find out more &raquo;</a>
+					</p>
+				</div>
+				<div class="col-md-4" id="welcome-panel-3">
+					<h2>Flexible documentation</h2>
+					<p>
+						The Tyk portal suports importing both Swagger and API Blueprint documents to 
+						auto-generate documentation. 
+						With flexible templates that can be
+						modified by you to fit in with your brand.
+					</p>
+					
+					<p>
+						<a class="btn btn-default" href="https:t//yk.io" role="button">Find out more &raquo;</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+	<hr>
+	
+	</div>
+
+	  {{ template "footer" .}}
+      
+    </div> <!-- /container -->
+
+
+    {{ template "scripts" .}}
+  </body>
+</html>
+
+
+
+{{ end }}

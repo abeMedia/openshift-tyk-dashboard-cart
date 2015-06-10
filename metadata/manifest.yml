@@ -14,7 +14,7 @@ License-Url: https://github.com/lonelycode/tyk/blob/master/LICENSE.md
 Vendor: Jively Ltd.
 Categories:
 - service
-- web_proxy
+- web_framework
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:

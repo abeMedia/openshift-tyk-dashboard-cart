@@ -15,8 +15,10 @@ function start() {
         if [ -f "$TYK_DASHBOARD_CONFIG_FILE.erb" ]; then
             oo-erb $TYK_DASHBOARD_CONFIG_FILE.erb > $TYK_DASHBOARD_CONFIG_FILE
         fi
-
-        nohup $TYK_DASHBOARD_EXEC --conf=$TYK_DASHBOARD_CONFIG_FILE >> $TYK_DASHBOARD_LOG_FILE 2>&1 &
+        
+        if [ -f "$TYK_DASHBOARD_CONFIG_FILE" ]; then
+            nohup $TYK_DASHBOARD_EXEC --conf=$TYK_DASHBOARD_CONFIG_FILE >> $TYK_DASHBOARD_LOG_FILE 2>&1 &
+        fi
 
     else
         echo "WARN: Could not find the compiled application versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/bin/tyk, will not start"

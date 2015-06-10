@@ -15,7 +15,6 @@ Vendor: Jively Ltd.
 Categories:
 - service
 - web_proxy
-- embedded
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:
@@ -46,7 +45,7 @@ Endpoints:
   Private-Port: 19091
   Public-Port-Name: PROXY_PORT
   Mappings:
-  - Frontend: 'analytics'
+  - Frontend: ''
     Backend: ''
     Options:
       websocket: true

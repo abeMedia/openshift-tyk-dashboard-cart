@@ -2,9 +2,9 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-TYK_DASHBOARD_DASHBOARD_EXEC=$OPENSHIFT_TYK_DASHBOARD_DIR/versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/tyk-analytics
-TYK_DASHBOARD_CONFIG_FILE=$TYK_DASHBOARD_DASHBOARD_EXEC.conf
-TYK_DASHBOARD_LOG_FILE=$OPENSHIFT_LOG_DIR/tyk_dashboard.log
+TYK_DASHBOARD_EXEC=$OPENSHIFT_TYK_DASHBOARD_DIR/versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/tyk-analytics
+TYK_DASHBOARD_CONFIG_FILE=$OPENSHIFT_REPO_DIR/tyk_analytics.conf
+TYK_DASHBOARD_LOG_FILE=$OPENSHIFT_LOG_DIR/tyk_analytics.log
 
 
 function start() {
@@ -29,11 +29,11 @@ function start() {
 function stop() {
     echo "Stopping Tyk Dashboard"
     
-    if [ -z "$(ps -ef | grep tyk_dashboard | grep -v grep)" ]
+    if [ -z "$(ps -ef | grep tyk-analytics | grep -v grep)" ]
     then
         echo "Application is already stopped"
     else
-        kill `ps -ef | grep tyk_dashboard | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+        kill `ps -ef | grep tyk-analytics | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
     fi
 }
 

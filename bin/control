@@ -2,7 +2,7 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-TYK_DASHBOARD_EXEC=$OPENSHIFT_TYK_DASHBOARD_DIR/versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/tyk-analytics
+TYK_DASHBOARD_EXEC=$OPENSHIFT_TYK_DASHBOARD_DIR/versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/bin/tyk_analytics
 TYK_DASHBOARD_CONFIG_FILE=$OPENSHIFT_REPO_DIR/tyk_analytics.conf
 TYK_DASHBOARD_LOG_FILE=$OPENSHIFT_LOG_DIR/tyk_analytics.log
 
@@ -17,11 +17,12 @@ function start() {
         fi
         
         if [ -f "$TYK_DASHBOARD_CONFIG_FILE" ]; then
+            cd $OPENSHIFT_REPO_DIR
             nohup $TYK_DASHBOARD_EXEC --conf=$TYK_DASHBOARD_CONFIG_FILE >> $TYK_DASHBOARD_LOG_FILE 2>&1 &
         fi
 
     else
-        echo "WARN: Could not find the compiled application versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/bin/tyk, will not start"
+        echo "WARN: Could not find the compiled application versions/$OPENSHIFT_TYK_DASHBOARD_VERSION/bin/tyk_analytics, will not start"
     fi
 }
 
@@ -29,11 +30,11 @@ function start() {
 function stop() {
     echo "Stopping Tyk Dashboard"
     
-    if [ -z "$(ps -ef | grep tyk-analytics | grep -v grep)" ]
+    if [ -z "$(ps -ef | grep tyk_analytics | grep -v grep)" ]
     then
         echo "Application is already stopped"
     else
-        kill `ps -ef | grep tyk-analytics | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+        kill `ps -ef | grep tyk_analytics | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
     fi
 }
 
